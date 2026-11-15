@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Strength Checker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>Password Strength Checker</nav>
+
+    <main>
+        <div class="card">
+            <h1>How strong is your password?</h1>
+            <p>Check how strong a password is and whether it has been leaked in a data breach.</p>
+
+            <form method="post" autocomplete="off">
+                <label>Password
+                    <input type="password" name="password" required autofocus>
+                </label>
+                <button type="submit">Check password</button>
+            </form>
+        </div>
+
+        {% if result %}
+        <div class="card">
+            <h2>Strength: {{ result.rating }} ({{ result.score }}/5)</h2>
+            <div class="bar">
+                <div class="fill score-{{ result.score }}" style="width: {{ result.score * 20 }}%"></div>
+            </div>
+
+            {% if result.tips %}
+                <h3>How to improve it</h3>
+                <ul>
+                    {% for tip in result.tips %}<li>{{ tip }}</li>{% endfor %}
+                </ul>
+            {% endif %}
+
+            <h3>Data breach check</h3>
+            {% if result.breaches is none %}
+                <p class="warning">Could not reach the breach database. Check your internet connection.</p>
+            {% elif result.breaches > 0 %}
+                <p class="danger">This password has appeared in {{ "{:,}".format(result.breaches) }} data breaches. Do not use it!</p>
+            {% else %}
+                <p class="safe">Good news: this password was not found in any known breaches.</p>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <div class="card info">
+            <h3>Is it safe to type my password here?</h3>
+            <p>Your password is never saved. For the breach check, it is turned into a SHA-1 hash and only the
+               first 5 characters of that hash are sent to <a href="https://haveibeenpwned.com/Passwords">Have I Been Pwned</a>.
+               The service never sees your actual password.</p>
+        </div>
+    </main>
+</body>
+</html>

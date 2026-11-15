@@ -1,0 +1,64 @@
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+}
+
+nav {
+    padding: 14px 24px;
+    background: #1f3a5f;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+main { max-width: 650px; margin: 30px auto; padding: 0 16px; }
+
+.card {
+    background: white;
+    padding: 20px;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+label { display: block; margin-bottom: 12px; font-weight: bold; }
+input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font: inherit;
+}
+
+button {
+    background: #1f3a5f;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font: inherit;
+}
+
+/* Strength bar */
+.bar { background: #e5e5e5; height: 14px; border-radius: 7px; overflow: hidden; }
+.fill { height: 100%; }
+.score-0, .score-1 { background: #c0392b; }
+.score-2 { background: #e67e22; }
+.score-3 { background: #f1c40f; }
+.score-4 { background: #2ecc71; }
+.score-5 { background: #27ae60; }
+
+/* Breach messages */
+.danger, .safe, .warning { padding: 10px; border-radius: 4px; }
+.danger { background: #fdecea; color: #c0392b; font-weight: bold; }
+.safe { background: #e8f8ef; color: #1e8449; }
+.warning { background: #fff3cd; }
+
+.info { font-size: 0.9em; color: #555; }
